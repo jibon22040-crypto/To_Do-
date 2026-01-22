@@ -1,0 +1,144 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task Details</title>
+
+<style>
+/* ===== Scoped Single View CSS ===== */
+.td-view-wrapper{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#020617,#0f172a);
+    font-family:'Segoe UI',sans-serif;
+    padding:30px;
+}
+
+.td-view-card{
+    width:100%;
+    max-width:600px;
+    background:#020617;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 25px 50px rgba(0,0,0,.45);
+}
+
+.td-view-title{
+    font-size:24px;
+    color:#38bdf8;
+    margin-bottom:18px;
+}
+
+.td-view-row{
+    margin-bottom:14px;
+}
+
+.td-view-label{
+    font-size:13px;
+    color:#94a3b8;
+    font-weight:600;
+    margin-bottom:4px;
+}
+
+.td-view-value{
+    font-size:15px;
+    color:#e5e7eb;
+}
+
+/* Image */
+.td-view-img{
+    width:100%;
+    max-height:260px;
+    object-fit:cover;
+    border-radius:12px;
+    margin:14px 0;
+    border:1px solid #1e293b;
+}
+
+/* Status Badge */
+.td-status{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.td-pending{ background:#fbbf241f; color:#fbbf24; }
+.td-complete{ background:#22c55e1f; color:#22c55e; }
+.td-cancel{ background:#ef44441f; color:#ef4444; }
+
+/* Back Button */
+.td-back-btn{
+    display:inline-block;
+    margin-top:18px;
+    padding:10px 18px;
+    background:#38bdf8;
+    color:#020617;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:700;
+}
+.td-back-btn:hover{
+    background:#0ea5e9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="td-view-wrapper">
+    <div class="td-view-card">
+
+        <div class="td-view-title">Task Details</div>
+
+        <div class="td-view-row">
+            <div class="td-view-label">User</div>
+            <div class="td-view-value">{{tasks.user}}</div>
+        </div>
+
+        <div class="td-view-row">
+            <div class="td-view-label">Title</div>
+            <div class="td-view-value">{{tasks.title}}</div>
+        </div>
+
+        <div class="td-view-row">
+            <div class="td-view-label">Description</div>
+            <div class="td-view-value">
+                {{tasks.description}}
+            </div>
+        </div>
+
+        <img src="{{tasks.task_image.url}}" class="td-view-img">
+
+        <div class="td-view-row">
+            <div class="td-view-label">Due Date</div>
+            <div class="td-view-value">{{tasks.due_date}}</div>
+        </div>
+
+        <div class="td-view-row">
+            <div class="td-view-label">Status</div>
+            <span class="td-status td-pending">{{tasks.status}}</span>
+        </div>
+
+        <div class="td-view-row">
+            <div class="td-view-label">Created At</div>
+            <div class="td-view-value">2{{tasks.created_at}}</div>
+        </div>
+
+        <a href="{% url 'task' %}" class="td-back-btn">← Back to Tasks</a>
+
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock body %}
+    

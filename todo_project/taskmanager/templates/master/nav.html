@@ -1,0 +1,20 @@
+
+
+<nav class="sn-navbar">
+    <a href="#" class="sn-logo">JobPortal</a>
+
+    <div class="sn-menu">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'task' %}">Task</a>
+        {% if user.user_types == "user" %}
+        <a href="{% url 'addtask' %}">Add Task</a>
+        {% endif %}
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="sn-actions">
+        <a href="{% url 'logout' %}" class="sn-btn">Logout</a>
+        <a href="{% url 'changepass' %}" class="sn-btn">Change Password</a>
+    </div>
+</nav>

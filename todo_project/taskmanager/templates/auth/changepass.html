@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Change Password</title>
+
+<style>
+/* ===== Scoped Change Password CSS ===== */
+.td-change-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px;
+}
+
+.td-change-form {
+    width: 100%;
+    max-width: 420px;
+    background: #020617;
+    padding: 34px;
+    border-radius: 18px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+}
+
+.td-change-form h2 {
+    text-align: center;
+    margin-bottom: 26px;
+    color: #38bdf8;
+}
+
+/* Input Group */
+.td-change-group {
+    margin-bottom: 20px;
+}
+
+.td-change-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #cbd5f5;
+}
+
+.td-change-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.td-change-group input:focus {
+    border-color: #38bdf8;
+}
+
+/* Button */
+.td-change-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    background: #38bdf8;
+    color: #020617;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.td-change-btn:hover {
+    background: #0ea5e9;
+    transform: translateY(-2px);
+}
+
+/* Note */
+.td-change-note {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 13px;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Change Password Form ===== -->
+<div class="td-change-wrapper">
+    <form class="td-change-form" method="POST">
+        {% csrf_token %}
+
+        <h2>Change Password</h2>
+        {% include 'master/messages.html' %}
+
+        <div class="td-change-group">
+            <label>Current Password</label>
+            <input type="password" name="Current_password" placeholder="Enter current password" required>
+        </div>
+
+        <div class="td-change-group">
+            <label>New Password</label>
+            <input type="password" name="New_password" placeholder="Enter new password" required>
+        </div>
+
+        <div class="td-change-group">
+            <label>Confirm New Password</label>
+            <input type="password" name="Confirm_password" placeholder="Confirm new password" required>
+        </div>
+
+        <button type="submit" class="td-change-btn">Update Password</button>
+
+        <div class="td-change-note">
+            Make sure your new password is strong and secure.
+        </div>
+
+    </form>
+</div>
+<!-- ===== End Change Password ===== -->
+
+</body>
+</html>

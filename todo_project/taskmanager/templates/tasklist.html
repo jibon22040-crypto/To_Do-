@@ -1,0 +1,191 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Todo Task Table</title>
+
+<style>
+/* ===== Scoped Todo Table CSS ===== */
+.td-table-wrapper {
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #020617;
+}
+
+.td-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #0f172a;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.td-table thead {
+    background: #020617;
+}
+
+.td-table th {
+    padding: 14px;
+    font-size: 14px;
+    text-align: left;
+    color: #38bdf8;
+    font-weight: 600;
+    border-bottom: 1px solid #1e293b;
+}
+
+.td-table td {
+    padding: 14px;
+    font-size: 14px;
+    color: #e5e7eb;
+    border-bottom: 1px solid #1e293b;
+    vertical-align: middle;
+}
+
+.td-table tbody tr:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/* Image */
+.td-task-img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #1e293b;
+}
+
+/* Status Badge */
+.td-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.td-pending {
+    background: rgba(251,191,36,0.15);
+    color: #fbbf24;
+}
+
+.td-complete {
+    background: rgba(34,197,94,0.15);
+    color: #22c55e;
+}
+
+.td-cancel {
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+}
+
+/* Action Buttons */
+.td-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.td-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.td-view {
+    background: rgba(56,189,248,0.15);
+    color: #38bdf8;
+}
+
+.td-edit {
+    background: rgba(34,197,94,0.15);
+    color: #22c55e;
+}
+
+.td-delete {
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+}
+
+.td-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .td-table {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="td-table-wrapper">
+    <table class="td-table">
+        <thead>
+            {% include 'master/messages.html' %}
+            <tr>
+                <th>User</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+      
+      {% for i in tasks %}
+      
+            <tr>
+                <td>{{i.user.username}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.description}}</td>
+                <td>
+                    {% if i.task_image %}
+                    <img src="{{i.task_image.url}}" class="td-task-img">
+                    {% endif %}
+                </td>
+                <td>{{i.due_date}}</td>
+                <td>
+                    <span class="td-status td-pending">{{i.status}}</span>
+                </td>
+                <td>{{i.created_at}}</td>
+
+
+                <td>
+                    <div class="td-actions">
+                        <a href="{% url 'view' i.id %}" class="td-btn td-view">View</a>
+                        
+                        {% if user.user_types == "user" %}
+                        <a href="{% url 'edittask' i.id %}" class="td-btn td-edit">Edit</a>
+                        <a href="{% url 'deletetask' i.id %}" class="td-btn td-delete">Delete</a>
+
+                        {% if i.status != "Completed" %}
+                        <a href="{% url 'status' i.id %}" class="td-btn td-delete">Status Change</a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+
+           {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+
+{% endblock body %}
+    

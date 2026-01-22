@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup</title>
+
+<style>
+/* ===== Scoped Signup CSS ===== */
+.td-signup-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px;
+}
+
+.td-signup-form {
+    width: 100%;
+    max-width: 460px;
+    background: #020617;
+    padding: 34px;
+    border-radius: 18px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+}
+
+.td-signup-form h2 {
+    text-align: center;
+    margin-bottom: 26px;
+    color: #38bdf8;
+}
+
+/* Input Groups */
+.td-signup-group {
+    margin-bottom: 18px;
+}
+
+.td-signup-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #cbd5f5;
+}
+
+.td-signup-group input,
+.td-signup-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.td-signup-group input:focus,
+.td-signup-group select:focus {
+    border-color: #38bdf8;
+}
+
+/* Button */
+.td-signup-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    background: #38bdf8;
+    color: #020617;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.td-signup-btn:hover {
+    background: #0ea5e9;
+    transform: translateY(-2px);
+}
+
+/* User Type */
+.td-user-type {
+    display: flex;
+    gap: 12px;
+}
+
+.td-user-type select {
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Signup Form ===== -->
+<div class="td-signup-wrapper">
+    <form class="td-signup-form" method="POST">
+        {% csrf_token %}
+
+        <h2>Create Account</h2>
+        {% include 'master/messages.html' %}
+
+        <div class="td-signup-group">
+            <label>Full Name</label>
+            <input type="text" name="fullname" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="td-signup-group">
+            <label>Username</label>
+            <input type="text" name="Username" placeholder="Choose a username" required>
+        </div>
+
+        <div class="td-signup-group">
+            <label>Email</label>
+            <input type="email" name="Email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="td-signup-group">
+            <label>Password</label>
+            <input type="password" name="Password" placeholder="Create a password" required>
+        </div>
+
+        <div class="td-signup-group">
+            <label>Confirm Password</label>
+            <input type="password" name="Confirm_Password" placeholder="Create a password" required>
+        </div>
+
+        <div class="td-signup-group">
+            <label>User Type</label>
+            <select name="User_Types" required>
+                <option value="">Select user type</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+        </div>
+
+        <button type="submit" class="td-signup-btn">Sign Up</button>
+
+    </form>
+</div>
+<!-- ===== End Signup ===== -->
+
+</body>
+</html>

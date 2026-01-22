@@ -1,0 +1,193 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo App | Welcome</title>
+
+<style>
+/* ===== Scoped Todo Home CSS (td- prefix) ===== */
+.td-home {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f172a, #020617);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.td-container {
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.td-content h1 {
+    font-size: 42px;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.td-content h1 span {
+    color: #38bdf8;
+}
+
+.td-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #cbd5f5;
+    margin-bottom: 28px;
+}
+
+.td-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.td-btn {
+    padding: 12px 26px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.td-btn-primary {
+    background: #38bdf8;
+    color: #020617;
+}
+
+.td-btn-primary:hover {
+    background: #0ea5e9;
+}
+
+.td-btn-outline {
+    background: transparent;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+.td-btn-outline:hover {
+    background: #38bdf8;
+    color: #020617;
+}
+
+/* ===== Feature Cards ===== */
+.td-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.td-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    padding: 22px;
+    color: #e5e7eb;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.td-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.td-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #38bdf8;
+}
+
+.td-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cbd5f5;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 900px) {
+    .td-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .td-actions {
+        justify-content: center;
+    }
+
+    .td-cards {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Todo Welcome Section ===== -->
+<section class="td-home">
+    <div class="td-container">
+        
+
+        <!-- Left Content -->
+        <div class="td-content">
+            <h1>Organize Your Day with <span>TodoApp</span></h1>
+            <p>
+                Stay focused, plan better, and get things done on time.
+                TodoApp helps you manage tasks effortlessly with a clean
+                and simple experience.
+            </p>
+
+            <div class="td-actions">
+                <a href="#" class="td-btn td-btn-primary">Get Started</a>
+                <a href="#" class="td-btn td-btn-outline">View Tasks</a>
+            </div>
+        </div>
+
+        <!-- Right Feature Cards -->
+        <div class="td-cards">
+            <div class="td-card">
+                <h3>📝 Add Tasks</h3>
+                <p>Create tasks quickly and keep everything organized.</p>
+            </div>
+
+            <div class="td-card">
+                <h3>⏰ Set Priorities</h3>
+                <p>Focus on what matters most with priority tracking.</p>
+            </div>
+
+            <div class="td-card">
+                <h3>✅ Track Progress</h3>
+                <p>Mark tasks complete and stay motivated every day.</p>
+            </div>
+
+            <div class="td-card">
+                <h2> {{user.username}}</h2>
+                <h3>🔒{{user.user_types}}</h3>
+                {% include 'master/messages.html' %}
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ===== End Welcome Section ===== -->
+
+</body>
+</html>
+
+
+
+{% endblock body %}
+    

@@ -1,0 +1,145 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Task</title>
+
+<style>
+/* ===== Scoped Add Task Form CSS ===== */
+.td-form-wrapper {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.td-form {
+    width: 100%;
+    max-width: 520px;
+    background: #020617;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.td-form h2 {
+    text-align: center;
+    color: #38bdf8;
+    margin-bottom: 26px;
+}
+
+/* Form Group */
+.td-group {
+    margin-bottom: 18px;
+}
+
+.td-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #cbd5f5;
+}
+
+.td-group input,
+.td-group textarea,
+.td-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.td-group input:focus,
+.td-group textarea:focus,
+.td-group select:focus {
+    border-color: #38bdf8;
+}
+
+.td-group textarea {
+    resize: none;
+    height: 90px;
+}
+
+/* Submit Button */
+.td-submit {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    background: #38bdf8;
+    color: #020617;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.td-submit:hover {
+    background: #0ea5e9;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Add Task Form ===== -->
+<div class="td-form-wrapper">
+    <form class="td-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2>➕ Add New Task</h2>
+
+        <div class="td-group">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Enter task title" required>
+        </div>
+
+        <div class="td-group">
+            <label>Description</label>
+            <textarea name="Description"  placeholder="Enter task description"></textarea>
+        </div>
+
+        <div class="td-group">
+            <label>Task Image </label>
+            <input type="file" name='task_image' placeholder="https://example.com/image.jpg">
+        </div>
+
+        <div class="td-group">
+            <label>Due Date</label>
+            <input type="date" name="date">
+        </div>
+
+        <div class="td-group">
+            <label>Status</label>
+            <select name='status_types'>
+                <option value="">Select status</option>
+                <option value="pending" >Pending</option>
+                <option value="Completed" >Completed</option>
+            </select>
+        </div>
+
+        <button type="submit" class="td-submit">Save Task</button>
+
+    </form>
+</div>
+<!-- ===== End Form ===== -->
+
+</body>
+</html>
+
+{% endblock body %}
+    
